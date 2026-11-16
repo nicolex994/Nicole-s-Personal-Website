@@ -1,0 +1,15 @@
+.case-page main [data-reading-panel] {border-block:0}
+.case-page main [data-reading-panel] [data-reading-title] {
+  font-size:clamp(34px,4vw,56px);line-height:1.24;
+}
+.case-page main [data-reading-panel] :is(.strategy-detail>div,.touch>dl>div,.work-steps li),
+.branding-page main .touch[data-reading-panel] dl>div {border-block:0}
+.case-page main [data-reading-panel] :is(p,dd) {font-size:18px;line-height:1.66}
+.case-page main [data-reading-panel] :is(dt,.work-steps h4) {font-size:20px;line-height:1.4}
+@media(prefers-reduced-motion:no-preference){
+  .case-reading-range {display:flow-root}
+  .case-reading-range::after {content:"";display:block;height:66svh}
+  .case-reading-range>[data-reading-panel] {position:sticky;top:100px;animation:none}
+  [data-reading-title]>span {color:color-mix(in srgb,#909398,var(--ink,#182b39) var(--read,100%))}
+  [data-reading-panel] [data-reading-body] {opacity:var(--body-opacity,1)}
+}

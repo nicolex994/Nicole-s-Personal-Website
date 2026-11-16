@@ -1,0 +1,20 @@
+/* Only Finder's transition surface changes; its starting rectangle stays intact. */
+.has-genie .glass-window { transform:none; --window-scale:1; }
+.has-genie > .work-space { left:44vw; top:calc(var(--frame-top) + 112px); transform:none; z-index:2; }
+.genie-canvas { position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; }
+.genie-dock { position:absolute; z-index:5; left:50%; bottom:24px; transform:translateX(-50%); display:grid; place-items:center; width:94px; height:68px; border-radius:20px; border:1px solid #ffffffb3; background:linear-gradient(140deg,#ffffff87,#dceafa6b); box-shadow:var(--control-rim),0 8px 28px -10px #344b6550; backdrop-filter:blur(24px) saturate(115%); -webkit-backdrop-filter:blur(24px) saturate(115%); pointer-events:none; opacity:0; }
+.genie-dock-icon { width:46px; height:46px; filter:drop-shadow(0 3px 3px #38516c25); }
+@media (max-height:780px),(max-width:1250px) { .has-genie > .work-space { top:calc(var(--frame-top) + 121px); } }
+@media(prefers-reduced-motion:reduce) {
+ .hero:has(.has-genie) { height:185vh; }
+ .hero-composition.has-genie { position:sticky; top:0; height:100vh; min-height:650px; }
+ .has-genie .glass-window { top:var(--frame-top); left:var(--frame-x); width:calc(100% - var(--frame-x)*2); height:calc(100vh - var(--frame-top) - var(--frame-bottom)); bottom:auto; right:auto; }
+ .has-genie .cover-content { inset:0; height:auto; opacity:var(--cover-opacity); }
+ .has-genie .project-note { top:calc(var(--frame-top) + 98px); opacity:var(--work-opacity); }
+ .has-genie > .work-space { opacity:var(--work-opacity); }
+ .hero:has(.has-genie) .next-screen-anchor { top:calc(100% - 100vh); }
+}
+
+.genie-returning .cover-content { visibility:hidden; }
+/* Keep the Dock below the unchanged case captions on shorter desktop viewports. */
+@media (max-height:840px) { .genie-dock { width:70px; height:36px; bottom:8px; border-radius:13px; } .genie-dock-icon { width:28px; height:28px; } }

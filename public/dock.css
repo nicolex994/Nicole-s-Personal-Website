@@ -1,0 +1,26 @@
+/* One viewport-fixed Dock. Finder's fourth slot is the viewport center. */
+.shared-dock { --dock-step:54px; position:fixed; z-index:12; left:50%; bottom:16px; transform:translateX(-50%); display:flex; align-items:center; padding:8px 12px; height:66px; border-radius:20px; border:1px solid #ffffffb3; background:linear-gradient(140deg,#ffffff87,#dceafa6b); box-shadow:var(--control-rim),0 8px 28px -10px #344b6550; backdrop-filter:blur(24px) saturate(115%); -webkit-backdrop-filter:blur(24px) saturate(115%); }
+.dock-systems { display:flex; align-items:center; flex-shrink:0; }
+.dock-slot { width:var(--dock-step); height:46px; flex-shrink:0; display:grid; place-items:center; }
+.dock-visual { display:block; width:44px; height:44px; transform:translateX(var(--dock-shift,0px)) scale(var(--dock-scale,1)); transform-origin:center bottom; transition:transform 180ms cubic-bezier(.2,.85,.25,1.15); }
+.dock-visual > img { width:44px; height:44px; object-fit:contain; filter:drop-shadow(0 3px 3px #38516c25); }
+.work-section { position:relative; height:100vh; min-height:700px; }
+.work-stage { --frame-top:clamp(180px,23.9vh,240px); --work-opacity:1; position:relative; height:100%; }
+.work-stage > .work-space { left:44vw; top:calc(var(--frame-top) + 112px); transform:none; z-index:2; opacity:1; }
+@media(max-height:780px),(max-width:1250px) { .work-stage > .work-space { top:calc(var(--frame-top) + 121px); } }
+@media(max-height:840px) { .shared-dock { --dock-step:46px; height:44px; bottom:8px; padding-block:3px; border-radius:14px; } .dock-slot {height:36px;} .dock-visual,.dock-visual > img {width:34px;height:34px;} }
+@media(prefers-reduced-motion:reduce),(hover:none) { .dock-visual {transition:none;transform:none;} }
+.work-stage { isolation:isolate; }
+.work-stage::before { content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 11% 43%,#81bde38f,transparent 46%),radial-gradient(ellipse at 79% 39%,#a398cf9c,transparent 42%),radial-gradient(ellipse at 48% 95%,#fff4dfd9,transparent 52%); }
+.dock-slot { padding:0; border:0; background:none; border-radius:10px; color:inherit; text-decoration:none; }
+.dock-slot:focus-visible { outline:2px solid #527693; outline-offset:3px; }
+.dock-slot[aria-disabled=true] { cursor:default; }
+.dock-slot:active .dock-visual { filter:brightness(.94); }
+.dock-visual { display:grid; place-items:center; filter:drop-shadow(0 3px 3px #38516c25); }
+.dock-visual .contact-art { width:100%; max-height:100%; }
+.dock-visual .contact-art img { scale:1; }
+@media(max-width:750px) {
+ .shared-dock { --dock-step:clamp(38px,11vw,44px); height:58px; padding:6px; bottom:max(8px,env(safe-area-inset-bottom)); }
+ .dock-slot { height:44px; }
+ .dock-visual,.dock-visual > img { width:32px; height:32px; }
+}

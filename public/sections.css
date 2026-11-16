@@ -1,0 +1,37 @@
+/* Keep the original two-screen background at its original extent. */
+body { background-size: 100% 185vh; background-repeat: no-repeat; }
+.reading-section, .skills-section { position: relative; background: #f5f8fb; }
+.reading-section { height: 225vh; }
+.reading-stage { position: sticky; top: 0; height: 100vh; min-height: 700px; display: grid; align-items: center; padding: 110px clamp(70px, 8.5vw, 150px) 65px; }
+.reading-content { max-width: 1220px; margin: 0 auto; transform: translateY(var(--reading-rise, 0px)); opacity: var(--reading-opacity, 1); }
+.reading-content h2 { margin: 0 0 36px; font-size: 15px; font-weight: 500; letter-spacing: .01em; color: #536b7d; }
+.reading-copy { margin: 0; font-size: clamp(44px, 3.65vw, 62px); font-weight: 500; line-height: 1.24; letter-spacing: -.035em; }
+.reading-phrase { color: #bfc9d1; }
+.reading-signoff { margin-top: 46px; }
+/* Fourth screen: solid folders behind independently scattered skill cards. */
+.skills-section { height: 155vh; background: radial-gradient(ellipse at 50% 65%, #e1f0f9 0%, #f5f8fb 68%); }
+.skills-stage { position: sticky; top: 0; height: 100vh; min-height: 740px; display: grid; place-items: center; padding: 105px 50px 35px; overflow: clip; }
+.skill-archive { user-select: none; -webkit-user-select: none; position: relative; width: min(1200px,100%); aspect-ratio: 1200 / 700; isolation: isolate; }
+/* Generated tactile paper and metal asset; skill cards remain independent. */
+.skill-folder { position: absolute; left: 31.666667%; top: 10%; width: 36.666667%; opacity: var(--tray-opacity,1); transform: translateY(var(--tray-rise,0px)); filter: drop-shadow(0 12px 12px #25496920); pointer-events: none; }
+.paper-folder-image { display: block; width: 100%; height: auto; }
+.skill-scatter { position: absolute; inset: 0; }
+.skill-entry { position: absolute; left: calc(var(--x) / 1200 * 100%); top: calc(var(--y) / 700 * 100%); width: calc(var(--width) / 1200 * 100%); z-index: var(--layer,3); opacity: var(--entry-opacity,1); transform: translate(var(--entry-x,0px),var(--entry-y,0px)) rotate(var(--entry-rotation,0deg)); }
+.skill-chip { width: 100%; min-height: 66px; display: flex; justify-content: center; align-items: center; gap: 9px; padding: 12px 16px; position: relative; border-radius: 24px; border: 1px solid hsl(var(--hue) 80% 94% / .95); color: #213a50; background: linear-gradient(135deg,hsl(var(--hue) 96% 90% / .86),hsl(var(--hue) 80% 76% / .58) 55%,hsl(var(--hue) 85% 88% / .8)); box-shadow: inset 0 2px 2px #fff, inset 2px 0 5px #ffffffb0, inset 0 -4px 7px hsl(var(--hue) 65% 60% / .2), 0 7px 12px -5px hsl(var(--hue) 45% 38% / .32), 0 1px 2px #304e6926; backdrop-filter: blur(12px) saturate(120%); -webkit-backdrop-filter: blur(12px) saturate(120%); font: 500 17px/1.17 var(--font-ui); letter-spacing: -.015em; cursor: pointer; touch-action: manipulation; transform: translate(var(--nudge-x, 0px),var(--nudge-y, 0px)) rotate(var(--angle)) scale(var(--nudge-scale, 1)); transition: transform 230ms cubic-bezier(.2,.7,.3,1), box-shadow 180ms ease; }
+.skill-chip::before { content: ''; position: absolute; inset: 3px; border: 1px solid #ffffff6b; border-radius: 20px; pointer-events: none; background: linear-gradient(165deg,#ffffff42,transparent 40%); }
+.skill-chip > span { position: relative; }
+.skill-chip:focus-visible { outline: 2px solid #304f6c; outline-offset: 5px; }
+.skill-chip[aria-pressed="true"] { box-shadow: inset 0 2px 3px #fff, 0 0 0 2px #6587a3, 0 10px 18px -7px #304f6c66; }
+
+.skill-chip { min-height: 58px; padding: 12px 17px; font-size: 18px; border-radius: 19px; }
+.skill-chip::before { border-radius: 15px; }
+.standalone-app { height: 66px; min-height: 0; padding: 12px; border-radius: 16px; border: 1px solid #fff; background: #fff; box-shadow: inset 0 1px 2px #fff, 0 6px 0 #d3dce4, 0 13px 19px #30495f26; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.standalone-app::before { display: none; }
+.standalone-app img { width: 100%; height: 100%; object-fit: contain; }
+.app-chatgpt { background: #f7faf9; }
+.app-instagram { background: radial-gradient(circle at 25% 100%,#ffd776,#f77737 28%,#df287a 55%,#7b3cba 85%); }
+.app-instagram img, .app-tiktok img { filter: invert(1); }
+.app-tiktok { background: #15191e; box-shadow: inset 0 1px 2px #53616d, 0 6px 0 #080e14, 0 13px 19px #30495f26; }
+.app-tiktok img { filter: invert(1) drop-shadow(-2px -1px #27e5df) drop-shadow(2px 1px #fb4769); }
+@media (max-height: 780px) { .reading-copy { font-size: 44px; } .reading-content h2 { margin-bottom: 22px; } .reading-signoff { margin-top: 28px; } .skills-stage { padding-top: 95px; } .skill-archive { width: min(1080px,100%); } .skill-chip { font-size: 16px; min-height: 52px; } .standalone-app { height: 60px; } }
+@media (prefers-reduced-motion: reduce) { .reading-section, .skills-section { height: auto; } .reading-stage, .skills-stage { position: relative; height: auto; min-height: 100vh; } .reading-content, .skill-archive, .skill-entry { opacity: 1 !important; transform: none !important; } .reading-phrase { color: #304a60 !important; } .skill-chip { transition: none; transform: rotate(var(--angle)); } .skill-folder { opacity: 1; transform: none; } }
